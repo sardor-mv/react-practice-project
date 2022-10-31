@@ -1,4 +1,5 @@
 // import logo from './logo.svg';
+// import { useInput } from "@mui/base";
 import React, { useState } from "react";
 import "./App.css";
 import UserInput from "./components/UserInput/UserInput";
@@ -19,6 +20,14 @@ const App = () => {
       return updateUserInputs;
     });
   };
+  let validationContent = (
+    <p style={{ textAlign: "center" }}> No userName found ! </p>
+  );
+  if (userInput.length > 0) {
+    validationContent = (
+      <UsernameList userList={userInput} onDeleteList={deleteUserListHandler} />
+    );
+  }
 
   return (
     <div className="App">
