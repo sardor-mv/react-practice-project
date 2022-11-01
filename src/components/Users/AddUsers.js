@@ -2,11 +2,17 @@ import React, { useState } from "react";
 // import styles from "./UserInput.module.css";
 import Button from "../../UI/Button";
 
-const UserInput = (props) => {
+const Users = (props) => {
   const [enteredInput, setEnteredInput] = useState("");
   const [isValid, setIsValid] = useState(true);
 
   const usernameInputHandler = (event) => {
+    if (event.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
+    setEnteredInput(event.target.value);
+  };
+  const ageInputHandler = (event) => {
     if (event.target.value.trim().length > 0) {
       setIsValid(true);
     }
@@ -25,12 +31,14 @@ const UserInput = (props) => {
   return (
     <form onSubmit={formSubmitHandler}>
       <div className="user-input">
-        <label style={{ color: !isValid ? "red" : "black" }}> Username</label>
-        <input type="text" onChange={usernameInputHandler} />
+        <label htmlFor="username">Username</label>
+        <input id="username" onChange={usernameInputHandler} />
+        <label htmlFor="age">Age</label>
+        <input id="age" onChange={ageInputHandler} />
       </div>
-      <Button type="button"></Button>
+      <Button type="submit"></Button>
     </form>
   );
 };
 
-export default UserInput;
+export default Users;
