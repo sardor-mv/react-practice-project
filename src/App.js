@@ -2,7 +2,7 @@
 // import { useInput } from "@mui/base";
 import React, { useState } from "react";
 import "./App.css";
-import UserInput from "./components/UserInput/UserInput";
+import AddUsers from "./components/Users/AddUsers";
 
 const App = () => {
   const [userInput, setUserInput] = useState([
@@ -32,7 +32,7 @@ const App = () => {
   return (
     <div className="App">
       <section id="user-input">
-        <UserInput onAddInput={addInputHandler} />
+        <AddUsers onAddInput={addInputHandler} />
       </section>
     </div>
   );
