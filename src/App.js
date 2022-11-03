@@ -23,19 +23,19 @@ const App = () => {
       // return updateUserInputs;
     });
   };
-  let validationContent = (
-    <p style={{ textAlign: "center" }}> No userName found ! </p>
-  );
-  if (userInput.length > 0) {
-    validationContent = (
-      <UsernameList userList={userInput} onDeleteList={deleteUserListHandler} />
-    );
-  }
+  // let validationContent = (
+  //   <p style={{ textAlign: "center" }}> No userName found ! </p>
+  // );
+  // if (userInput.length > 0) {
+  //   validationContent = (
+  //     <UsernameList userList={userInput} onDeleteList={deleteUserListHandler} />
+  //   );
+  // }
 
   return (
     <div className="App">
       <AddUsers onAddInput={addInputHandler} />
-      <UsersList users={usersList} />
+      <UsersList users={UsersList} />
     </div>
   );
 };
