@@ -7,7 +7,7 @@ const ErrorModal = (props) => {
   return (
     <Card className={classes.modal}>
       <div>
-        <div className={classes.backdrop} />
+        <div className={classes.backdrop} onClick={props.onHandleError} />
       </div>
       <header className={classes.header}>
         <h2>{props.title}</h2>
@@ -16,7 +16,7 @@ const ErrorModal = (props) => {
         <p>{props.message}</p>
       </div>
       <footer className={classes.actions}>
-        <Button>Footer Section </Button>
+        <Button onClick={props.onHandleError}>Footer Section </Button>
       </footer>
     </Card>
   );

@@ -8,16 +8,25 @@ import classes from "./AddUsers.module.css";
 const AddUsers = (props) => {
   const [enteredInput, setEnteredInput] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
-  const [isValid, setIsValid] = useState(true);
+  // const [isValid, setIsValid] = useState(true);
+  const [error, setError] = useState("");
 
   const addUserHandler = (event) => {
     event.preventDefault();
     if (enteredInput.trim().length === 0 || enteredAge.trim() === 0) {
-      setIsValid(false);
+      setError({
+        title: "Invalid input",
+        message: "Please Enter a valid name and age",
+      });
       return;
     }
+
     if (+enteredAge < 1) {
       // + will turn the enteredAge valaue ( "number" string) to a  number.
+      setError({
+        title: "Invalid Age",
+        message: "Please Enter age greater than 0",
+      });
       return;
     }
     props.onAddInput(enteredInput, enteredAge); // being executed as a function as a value.
@@ -39,9 +48,21 @@ const AddUsers = (props) => {
     setEnteredAge(event.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+    return;
+  };
+
   return (
     <div>
-      <ErrorModal title="Error has occured" message="Semthing went wrong" />
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onHandleError={errorHandler}
+        />
+      )}
+      {/* // {error && <ErrorModal></ErrorModal>} conditionally render the error  */}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <div className="user-input">
