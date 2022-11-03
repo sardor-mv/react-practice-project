@@ -19,7 +19,10 @@ const AddUsers = (props) => {
       // + will turn the enteredAge valaue ( "number" string) to a  number.
       return;
     }
-    props.onAddUsername(enteredInput);
+    props.onAddInput(enteredInput, enteredAge); // being executed as a function as a value.
+    // we are forwarding the enteredInput and enteredAge value to App.js component.
+    setEnteredAge("");
+    setEnteredInput("");
   };
 
   const usernameInputHandler = (event) => {

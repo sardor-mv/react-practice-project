@@ -6,13 +6,13 @@ const UsersList = () => {
   return (
     <Card className={classes.users}>
       {" "}
-      <ul>
+      <li key={user.id}>
         {props.users.map((user) => {
           <li>
             {user.name} ({user.age} years old)
           </li>;
         })}
-      </ul>
+      </li>
     </Card>
   );
 };
