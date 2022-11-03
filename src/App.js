@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import AddUsers from "./components/Users/AddUsers";
+import UsersList from "./components/Users/UsersList";
 
 const App = () => {
   const [userInput, setUserInput] = useState([
@@ -31,9 +32,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <section id="user-input">
-        <AddUsers onAddInput={addInputHandler} />
-      </section>
+      <AddUsers onAddInput={addInputHandler} />
+      <UsersList users={[]} />
     </div>
   );
 };

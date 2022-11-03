@@ -4,45 +4,54 @@ import Button from "../../UI/Button";
 import Card from "../../UI/Card";
 import classes from "./AddUsers.module.css";
 
-const Users = (props) => {
+const AddUsers = (props) => {
   const [enteredInput, setEnteredInput] = useState("");
+  const [enteredAge, setEnteredAge] = useState("");
   const [isValid, setIsValid] = useState(true);
 
-  const usernameInputHandler = (event) => {
-    if (event.target.value.trim().length > 0) {
-      setIsValid(true);
-    }
-    setEnteredInput(event.target.value);
-  };
-  const ageInputHandler = (event) => {
-    if (event.target.value.trim().length > 0) {
-      setIsValid(true);
-    }
-    setEnteredInput(event.target.value);
-  };
-
-  const formSubmitHandler = (event) => {
+  const addUserHandler = (event) => {
     event.preventDefault();
-    if (enteredInput.trim().length === 0) {
+    if (enteredInput.trim().length === 0 || enteredAge.trim() === 0) {
       setIsValid(false);
+      return;
+    }
+    if (+enteredAge < 1) {
+      // + will turn the enteredAge valaue ( "number" string) to a  number.
       return;
     }
     props.onAddUsername(enteredInput);
   };
 
+  const usernameInputHandler = (event) => {
+    setEnteredInput(event.target.value);
+
+    // if (event.target.value.trim().length > 0) {
+    //   setIsValid(true);
+    // }
+    setEnteredInput(event.target.value);
+  };
+
+  const ageInputHandler = (event) => {
+    setEnteredAge(event.target.value);
+  };
+
   return (
     <Card className={classes.input}>
-      <form onSubmit={formSubmitHandler}>
+      <form onSubmit={addUserHandler}>
         <div className="user-input">
           <label htmlFor="username">Username</label>
-          <input id="username" onChange={usernameInputHandler} />
+          <input
+            id="username"
+            value={enteredInput}
+            onChange={usernameInputHandler}
+          />
           <label htmlFor="age">Age</label>
-          <input id="age" onChange={ageInputHandler} />
+          <input id="age" value={enteredAge} onChange={ageInputHandler} />
         </div>
-        <Button type="submit"></Button>
+        <Button type="submit">Add Users</Button>
       </form>
     </Card>
   );
 };
 
-export default Users;
+export default AddUsers;
