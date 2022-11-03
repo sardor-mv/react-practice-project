@@ -1,8 +1,7 @@
-// import logo from './logo.svg';
-// import { useInput } from "@mui/base";
 import React, { useState } from "react";
 import "./App.css";
 import AddUsers from "./components/Users/AddUsers";
+import UsersList from "./components/Users/UsersList";
 
 const App = () => {
   const [userInput, setUserInput] = useState([
@@ -10,14 +9,18 @@ const App = () => {
     { username: "Dave", id: "usr2" },
   ]);
 
-  const addInputHandler = (enteredInput) => {
+  const addInputHandler = (uName, uAge) => {
     setUserInput((prevInputs) => {
-      const updateUserInputs = [...prevInputs];
-      updateUserInputs.unshift({
-        username: enteredInput,
-        id: Math.random().toString(),
-      });
-      return updateUserInputs;
+      return [
+        ...prevInputs,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
+      // const updateUserInputs = [...prevInputs]
+      // updateUserInputs.unshift({
+      //   username: enteredInput,
+      //   id: Math.random().toString(),
+      // });
+      // return updateUserInputs;
     });
   };
   let validationContent = (
@@ -31,9 +34,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <section id="user-input">
-        <AddUsers onAddInput={addInputHandler} />
-      </section>
+      <AddUsers onAddInput={addInputHandler} />
+      <UsersList users={usersList} />
     </div>
   );
 };
