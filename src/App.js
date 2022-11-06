@@ -33,10 +33,10 @@ const App = () => {
   // }
 
   return (
-    <div className="App">
+    <>
       <AddUsers onAddInput={addInputHandler} />
       <UsersList users={UsersList} />
-    </div>
+    </>
   );
 };
 export default App;
