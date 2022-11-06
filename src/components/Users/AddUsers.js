@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // import styles from "./UserInput.module.css";
 import Button from "../../UI/Button";
 import Card from "../../UI/Card";
@@ -7,6 +7,8 @@ import Wrapper from "../Helpers/Wrapper";
 import classes from "./AddUsers.module.css";
 
 const AddUsers = (props) => {
+  const nameInputRef = useRef("");
+  const ageInputref = useRef("");
   const [enteredInput, setEnteredInput] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   // const [isValid, setIsValid] = useState(true);
@@ -14,6 +16,7 @@ const AddUsers = (props) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    console.log(nameInputRef, ageInputref);
     if (enteredInput.trim().length === 0 || enteredAge.trim() === 0) {
       setError({
         title: "Invalid input",
@@ -73,9 +76,15 @@ const AddUsers = (props) => {
               id="username"
               value={enteredInput}
               onChange={usernameInputHandler}
+              ref={nameInputRef}
             />
             <label htmlFor="age">Age</label>
-            <input id="age" value={enteredAge} onChange={ageInputHandler} />
+            <input
+              id="age"
+              value={enteredAge}
+              onChange={ageInputHandler}
+              red={ageInputref}
+            />
           </div>
           <Button type="submit">Add Users</Button>
         </form>
