@@ -9,9 +9,7 @@ import classes from "./AddUsers.module.css";
 const AddUsers = (props) => {
   const nameInputRef = useRef();
   const ageInputRef = useRef();
-  // const [enteredInput, setEnteredInput] = useState("");
-  // const [enteredAge, setEnteredAge] = useState("");
-  // const [isValid, setIsValid] = useState(true);
+
   const [error, setError] = useState("");
 
   const addUserHandler = (event) => {
@@ -37,30 +35,14 @@ const AddUsers = (props) => {
     }
     props.onAddInput(enteredName, enteredUserAge); // being executed as a function as a value.
     // we are forwarding the enteredInput and enteredAge value to App.js component.
-    // setEnteredAge("");
-    // setEnteredInput("");
+
     nameInputRef.current.value = "";
     ageInputRef.current.value = "";
   };
-
-  // const usernameInputHandler = (event) => {
-  //   setEnteredInput(event.target.value);
-
-  //   // if (event.target.value.trim().length > 0) {
-  //   //   setIsValid(true);
-  //   // }
-  //   setEnteredInput(event.target.value);
-  // };
-
-  // const ageInputHandler = (event) => {
-  //   setEnteredAge(event.target.value);
-  // };
-
   const errorHandler = () => {
     setError(null);
     return;
   };
-
   return (
     <Wrapper>
       {error && (
